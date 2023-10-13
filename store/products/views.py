@@ -1,7 +1,17 @@
 from django.shortcuts import render
+from django.views.generic import ListView, TemplateView
 
-def index(request):
-    return render(request, 'products/index.html')
+from .models import Product, ProductCategory
 
-def products(request):
-    return render(request, 'products/products.html')
+
+class IndexView(TemplateView):
+    template_name = 'products/index.html'
+    title = 'Store'
+
+class ProductListView(ListView):
+    model = Product
+    queryset = model.objects.all()
+    context_object_name = 'product_list'
+    template_name = 'products/products.html'
+    title = 'Store - Каталог'
+
