@@ -1,0 +1,17 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+    {{ title ]}
+{% endblock %]
+
+{% block css %}
+<!-- Custom styles for this template -->
+    <link href="../vendor/css/profile.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Navigation -->
+{% include 'products/components/nav.html' %}
+{% include 'users/components/profile_content.html' %}
+
+{% endblock %}
