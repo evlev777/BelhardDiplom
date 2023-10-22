@@ -4,6 +4,7 @@ from django.views.generic import ListView, TemplateView
 from django.contrib.auth.decorators import login_required
 
 from .models import Product, ProductCategory, Basket
+from django.core.paginator import Paginator
 
 
 class IndexView(TemplateView):
@@ -14,9 +15,10 @@ class ProductListView(ListView):
     model = Product
     context_object_name = 'product_list'
     template_name = 'products/products.html'
+    paginate_by = 3
     title = 'Store - Каталог'
 
-    def get_queryset(self):
+    def get_queryset(self, category_id=None):
         queryset = super(ProductListView, self).get_queryset()
         category_id = self.kwargs.get('category_id')
         return queryset.filter(category_id=category_id) if category_id else queryset
